@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>v-if and v-show</title>
+</head>
+<body>
+<div id="app">
+    <template v-show ="flag">
+        <span>123456</span>
+        <span>67890</span>
+        <span>aaabbbcccc</span>
+    </template>
+    <template v-else>hello</template>
+</div>
+<script src="vueJS.js"></script>
+<script>
+    var vm =new Vue({
+        el:'#app',
+        data:{
+            message:"zfpx",
+            flag:true
+        }
+    });
+//    template 是我们自己设定的标签,不会进行页面的渲染
+//    v-if 和v-else是一对标签组合使用
+// v-show 不支持template这个标签，但是支持v-else这个写法；
+//    比如折叠的菜单 点击一下消失 点击一下隐藏 肯定要用 v-show
+
+
+</script>
+</body>
+</html>

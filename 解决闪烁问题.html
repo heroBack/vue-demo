@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>解决闪烁问题</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--// 用作绑定动态数据并且防止闪烁；-->
+        <div v-text="message"></div>
+        <div v-text="age"></div>
+        <div  v-cloak>
+            <!--v-cloak 的原理  先将元素隐藏掉 当获取数据后再将元素显示；dispaly：none/block-->
+            {{message}} {{age}}
+        </div>
+    </div>
+    <script src="vueJS.js"></script>
+    <script>
+        //   angular 解决闪烁问题；  -bind
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                message:'zfpx',
+                age:'7'
+            }
+        })
+    //解决闪烁问题,主要有两点：1.就是v-text，还有一种就是 v-cloack  加上[v-cloak]{display: none;} 这个属性
+        // vue  v-if v-show anglue  ng-show ng-hide ng-if
+        //  v-if  当条件成立时会将元素加上，不成立会移除demo，并且内部的指令不会执行
+        // v-show 只是简单的隐藏和显示
+    </script>
+</body>
+</html>

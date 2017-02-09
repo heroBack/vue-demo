@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>vueJs</title>
+</head>
+<body>
+
+<div id="app">
+    <input type="text" v-model="message">
+    <!--一次绑定当数据改变的时候不更新数据-->
+    一次绑定： {{*message}}<br/>
+    这个是不带星的是双向的数据绑定{{message}}
+    将html标签进行渲染{{{message}}}<br/>
+    <!--可以用三元运算表达式 如果不加单引号默认取到的是模型上的数据  不支持if else 只支持三元-->
+    加了三元运算符号的：{{message?message:'zfpx'}}
+</div>
+<div id="appTwo">
+    <input type="text" v-model="name">
+    {{name}}
+</div>
+<div id="app3">
+    {{age}}
+</div>
+<script src="vueJS.js"></script>
+<script>
+    //  创建一个vue实例 vm实现双向数据绑定
+    var vm =  new Vue({
+        el: '#app',// 当前的数据的作用范围；
+        data:{ // 挂在了veiwModel上，就相当于挂在了vm上面；
+            message:'<em>hello  word</em>'
+        }
+    });
+    var messageTwo  = {
+        name: '张三'
+    };
+    var vm2 = new Vue({
+        el:'#appTwo',
+        data:messageTwo
+    });
+//    可以改变对象上的属性的值
+    messageTwo.name = '李四';
+    //改变对象是不行，指向了新的内存地址 ，不会影响到实例的变化；,
+    messageTwo = {
+        name:'王五'
+    }
+    messageTwo.age = 400;
+//    当我们实例创建后原本不存在的属性 ,是无法绑定在视图的上的，
+    // vue.set vm.$set
+
+    var message3={
+        age:11
+    }
+    var message33={
+        age:99
+    }
+    var vm3 = new Vue({
+        el:'#app3',
+        data:{
+            message:message3
+        }
+    });
+
+    console.log(vm3.$el === document.getElementById('app3'));
+    console.log(vm3.$data === message3 );
+//    console.log();
+//    注意这个$el是可以放在最外层的
+    //实例是不能嵌套的  可以创建多个作用域块；
+    // vm.$el就是取对应的当前作用域在哪个作用域上
+//    当el一旦绑定成功一次后，以后就不会再改变了
+    vm3.$el =document.getElementById('app3');
+    // vm.$data指向的就是data后面的那个对象；
+    // 尽量不使用这种方式 把一个data重现的赋值给一个变量； 直接将实例上的data属性指向一个新的空间，所有的视图可以改变
+    vm3.$data=message33;
+    // watch 事件：  监控方法的改变；
+    vm.$watch('message',function(newVal,oldVal){
+        // 新的值和旧的值
+        console.log(newVal,oldVal);
+    });
+    // 页面中的东西
+//    var  demoVm ={
+//        el:'#appNormal',
+//    };
+//    vue 的生命周期 vue 在创建的时候有一系列的初始化的步骤
+//    created  vm.$mount('#app');  先实例化，在实例化后（检测el）；
+//        vm.$mount('#app');手动挂载实例
+//    beforeCompile 开始编译之前
+//    compiled：编译完成之后
+//ready 插入文档之后
+// vm.$destroy 手动销毁实例；
+//    beforeDestroy; 将要销毁
+//destroyed   销毁实例；
+
+</script>
+</body>
+</html>

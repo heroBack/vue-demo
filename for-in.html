@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> for in  遍历数据</title>
+</head>
+<body>
+<!--同ng-reapeat就是将数据遍历到我们的页面上-->
+<div id="app">
+    <!--(key,value)  {{$key}{{value}}代表当前对象的键和值}}的形式-->
+    <!--遍历对象-->
+    <template v-for =" value in message">
+        {{$index}}  {{$key}}  {{value}}<br>
+    </template>
+    <!--遍历数组-->
+    <div v-for="a in arr">
+        {{$index}}{{a.name}}{{a.age}}
+    </div>
+    <!--父亲和儿子的节点-->
+    <br/><br/><br/>
+    <em>
+        儿子和父亲的节点问题
+    </em>
+    <br/>
+    <br/><br/><br/>
+    <div v-for ="(index,a) in arr">
+       1. 父亲的索引{{$index}}
+        <div v-for ="t in a.type">
+            2.儿子里面拿到父亲的节点{{index}}
+            3.儿子的索引{{$index}}{{t}}
+        </div>
+    </div>
+    <!--遍历相同数据 遍历数组的时候 指定track-by为$index-->
+    <div v-for ="a in arr2" track-by ="$index">
+        {{a}}
+    </div>
+    <!--第一次请求的是{{src}} 第二次请求是src-->
+    <!--bind绑定动态数据-->
+    <div id="appTwo">
+        <img src="{{src}}" alt=""/>
+    </div>
+</div>
+<script src="vueJS.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:{
+                name:'zfpx',
+                age:7,
+                sex:'woman',
+                height:'176cm'
+            },
+            arr:[
+                {name:'苹果',age:8,type:['黄色','蓝色']},
+                {name:'三星',age:10,type:['玫瑰金','蓝色']},
+                {name:'华为',age:20,type:['玫瑰金','蓝mei色']}
+            ],
+            arr2:[
+                   '苹果',
+                   '苹果',
+                   '苹果'
+            ]
+        }
+    });
+</script>
+</body>
+</html>

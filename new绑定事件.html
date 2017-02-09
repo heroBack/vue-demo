@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>绑定事件</title>
+</head>
+<body>
+<div id="app" v-on:click="world(1,$event)">
+    {{message}}
+    <table class=" table table-bordered">
+        <tr>
+            <td>序号</td>
+            <td>名称</td>
+            <td>数量</td>
+            <td>价格</td>
+            <td>小计</td>
+            <td>操作</td>
+        </tr>
+        <tr v-for = "book in books" track-by ="$index">
+            <td>{{$index + 1}}</td>
+            <td>{{book.name}}</td>
+            <td><input type="text" v-model ="book.count" /></td>
+            <td>{{book.price}}</td>
+            <td>{{book.count*book.price}}</td>
+            <td><button class="btn btn-delete">删除</button></td>
+        </tr>
+        <tr>
+            <!--@相当于v-on的简写-->
+            <td colspan="6" @click ='remove(book)'>{{total}}</td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                总价格{{total}}
+            </td>
+        </tr>
+    </table>
+</div>
+<script src="vueJS.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            books:[
+                {name:'nodeJs',price:20,count:1},
+                {name:'angularJs',price:50,count:3},
+                {name:'vueJs',price:100,count:4},
+                {name:'newVueJs',price:70,count:5}
+            ],
+            message:'hello'
+        },
+        methods:{
+            //  一个组件里面最好有一个methods 两个methods会出现问题了
+            world:function(e,ev){
+                // e是事件源
+                alert(11);
+                console.log(e,ev);
+            }
+        },
+        computed:function(){
+//            total: function (item){
+//                var sum =0;
+//                this.books.forEach(function(item){
+//                    sum += item.price*item.count;
+//                });
+//                return sum;
+//            }
+        }
+    });
+    //  如果我们在click中加入括号事件源无法自动传递；
+    // 我们可以手动将event添加到页面当中；
+
+
+
+
+</script>
+</body>
+</html>

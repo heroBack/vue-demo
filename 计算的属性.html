@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>计算的属性</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+    {{b}}
+</div>
+<script src="vueJS.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:'hello'
+        },
+        //要计算的属性；
+        computed:{
+//            b:function () {
+//                // 当获取b的值的时候可以默认的调用这个方法
+//                // 在获取b的时候将原有的message也进行变化；
+//                // this 里面的this指向的是当前的实例也就是vm；
+//                this.message = 'hello zfpx';
+////                通过return 把b的值返回；
+//                 return 1000;
+//            }
+            //属性是由get和set写成的一个对象型( 默认不写是get方法 )；
+            //  b也是模型的数据
+            b:{
+                get:function(){
+                    return 2000;
+                },
+                set:function(val){
+//                  val就是我们设置的值
+//                    当我们给b进行赋值会默认调用set方法
+                    this.message = val ;
+                }
+            }
+        }
+    });
+    vm.b = 100; // b 的值改变就把那个message的值改变了；
+</script>
+</body>
+</html>

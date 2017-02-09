@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>bind 动态绑定数据</title>
+</head>
+<body>
+<!--第一次请求的是{{src}} 第二次请求的是src-->
+<!--所以请求错误了-->
+<!--<v-bind和：效果一样 都表示渲染一个动态的数据>-->
+<!--取动态的数据就用：的形式-->
+<div id="app">
+    <img :src="src" alt=""/>
+</div>
+<script src="vueJS.js"></script>
+<script>
+var vue= new Vue({
+    el:'#app',
+    data:{
+        src:'http://vuejs.org/images/logo.png'
+    }
+});
+    // 
+</script>
+</body>
+</html>

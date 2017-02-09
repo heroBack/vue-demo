@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>实例的生命周期</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+</div>
+<script src="vueJS.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data: {
+            message: 'hello'
+        },
+        created: function () {
+            alert('实例被创建了');
+        },
+        beforeCompile: function () {
+            alert('开始编译了');
+        },
+        compiled: function () {
+            alert('编译后');
+        },
+        ready: function () {
+            alert('进入文档');
+        },
+        beforeDestroy: function () {
+            alert('销毁之前');
+        },
+        destroy: function () {
+            alert('销毁');
+        }
+    });
+    // 手动 挂载元素el
+//    vm.$mount('#app');
+//    vm.$destroy()
+    // 虽然我们调用了$destroy  但是我们被编译好的页面是不会被删除的，但是这个vm这个实例已经被删除掉了。
+
+</script>
+</body>
+</html>
